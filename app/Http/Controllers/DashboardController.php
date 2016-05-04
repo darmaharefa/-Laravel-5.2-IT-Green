@@ -281,7 +281,7 @@ class DashboardController extends Controller
 
         $tips->save();
 
-        Session::flash('sukses','Tips Berhasil di Tambah!');
+        Session::flash('success','Tips Berhasil di Tambah!');
 
         return  redirect()->route('tips.show');
     }
@@ -313,7 +313,7 @@ class DashboardController extends Controller
 
         $tips->save();
 
-        Session::flash('sukses','Tips Berhasil di Edit!');
+        Session::flash('success','Tips Berhasil di Edit!');
 
         return  redirect()->route('tips.show');
     }
