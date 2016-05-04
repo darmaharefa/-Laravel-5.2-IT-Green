@@ -25,7 +25,16 @@
 @section('konten')
 <div class="row">
     <div class="col-lg-12">
-        <h5>Cara dan Tips Menanam <span class="grey">({{count($data)}})</span></h5>
+        <div class="row">
+            <div class="col-md-10"> 
+                <h5>Cara dan Tips Menanam <span class="grey">({{count($data)}})</span></h5>
+            </div>
+            <div class="col-md-2">
+                <a class="btn btn-primary btn-sm btn-block" href="{{url("/dashboard/tips/create")}}">
+                    <span class="fa fa-plus"></span> Tambah
+                </a>
+            </div>
+        </div>
         <div class="table-responsive">
             <table class="table table-bordered table-hover">
                 <thead>

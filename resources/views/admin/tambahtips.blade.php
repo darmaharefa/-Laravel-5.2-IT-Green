@@ -38,10 +38,7 @@
                 <p class="help-block">Ex : <b> <?php echo url("")."/tips"."</b>"."/pertumbuhan-dengan-cahaya-buatan" ?></p>
             </div>
 
-            <div class="form-group">
-                <label>Deskripsi</label>
-                <textarea class="form-control" rows="6" name="deskripsi"></textarea>
-            </div>
+            
     </div>
 
     <div class="col-md-4">
@@ -56,9 +53,18 @@
             </div>
         </div>
     </div>
-    </form>
 
 </div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label>Deskripsi</label>
+            <textarea class="form-control" rows="10" name="deskripsi"></textarea>
+        </div>
+    </div>
+</div>
+</form>
 
 
 @endsection

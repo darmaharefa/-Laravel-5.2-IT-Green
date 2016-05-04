@@ -29,44 +29,57 @@
 @section('konten')
 <div class="row">
     <div class="col-lg-12">
-        @if($jenis_id == 1)
-            <h5>Tanaman Bunga <span class="grey">({{count($data)}})</span></h5>
-        @elseif($jenis_id == 2)
-            <h5>Tanaman Daun <span class="grey">({{count($data)}})</span></h5>
-        @elseif($jenis_id == 3)
-            <h5>Tanaman Pohon <span class="grey">({{count($data)}})</span></h5>
-        @endif
-        <div class="table-responsive">
-            <table class="table table-bordered table-hover">
-                <thead>
-                    <tr>
-                        <th class="text-center">No</th>
-                        <th class="text-center">Judul</th>
-                        <th class="text-center">Date</th>
-                        <th colspan="3" class="text-center">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($data as $key=>$item)
-                    <tr>
-                        <td class="text-center">{{++$key}}</td>
-                        <td>{{$item->judul}}</td>
-                        <td class="text-center">{{ date('d/m/Y', strtotime($item->created_at)) }}</td>
-                        <td>
-                            <a href="{{url("/jenis")}}/{{$item->jenis_id}}/{{$item->url}}" class="btn btn-default btn-sm btn-block" target="_blank">Lihat</a>
-                        </td>
-                        <td>
-                            <a href="{{url("/dashboard/jenis")}}/{{$item->jenis_id}}/{{$item->id}}/edit" class="btn btn-success btn-sm btn-block">Edit</a>
-                        </td>
-                        <td>
-                            {!! Form::open(['route'=>['jenis.delete', $item->jenis_id,$item->id], 'method'=> 'delete']) !!}
-                            {!! Form::submit('Hapus', ['class'=> 'btn btn-danger btn-sm btn-block']) !!}
-                            {!! Form::close() !!}
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+        <div class="row">
+            <div class="col-md-10"> 
+                @if($jenis_id == 1)
+                    <h5>Tanaman Bunga <span class="grey">({{count($data)}})</span></h5>
+                @elseif($jenis_id == 2)
+                    <h5>Tanaman Daun <span class="grey">({{count($data)}})</span></h5>
+                @elseif($jenis_id == 3)
+                    <h5>Tanaman Pohon <span class="grey">({{count($data)}})</span></h5>
+                @endif
+            </div>
+            <div class="col-md-2">
+                <a class="btn btn-primary btn-sm btn-block" href="{{url("/dashboard/jenis/create")}}">
+                    <span class="fa fa-plus"></span> Tambah
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th class="text-center">No</th>
+                                <th class="text-center">Judul</th>
+                                <th class="text-center">Date</th>
+                                <th colspan="3" class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($data as $key=>$item)
+                            <tr>
+                                <td class="text-center">{{++$key}}</td>
+                                <td>{{$item->judul}}</td>
+                                <td class="text-center">{{ date('d/m/Y', strtotime($item->created_at)) }}</td>
+                                <td>
+                                    <a href="{{url("/jenis")}}/{{$item->jenis_id}}/{{$item->url}}" class="btn btn-default btn-sm btn-block" target="_blank">Lihat</a>
+                                </td>
+                                <td>
+                                    <a href="{{url("/dashboard/jenis")}}/{{$item->jenis_id}}/{{$item->id}}/edit" class="btn btn-success btn-sm btn-block">Edit</a>
+                                </td>
+                                <td>
+                                    {!! Form::open(['route'=>['jenis.delete', $item->jenis_id,$item->id], 'method'=> 'delete']) !!}
+                                    {!! Form::submit('Hapus', ['class'=> 'btn btn-danger btn-sm btn-block']) !!}
+                                    {!! Form::close() !!}
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>

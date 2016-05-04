@@ -24,7 +24,7 @@
 
 <div class="row">
     <div class="col-md-8">
-        <form role="form" method="POST" action="{{ url(action("DashboardController@postSaveJenis")) }}">
+        <form role="form" method="POST" enctype="multipart/form-data" action="{{ url(action("DashboardController@postSaveJenis")) }} ">
         {{ csrf_field() }}
             <div class="form-group">
                 <label>Nama Tanaman</label>
@@ -42,15 +42,17 @@
                 <input class="form-control" placeholder="Enter text" name="url">
                 <p class="help-block">Ex : <b> <?php echo url("")."/jenis/1/"."</b>"."aeschynanthus-bunga-lipstik" ?></p>
             </div>
-
-            <div class="form-group">
-                <label>Deskripsi</label>
-                <textarea class="form-control" rows="6" name="deskripsi"></textarea>
-            </div>
     </div>
 
    	<div class="col-md-4">
    		<div class="well">
+        <div class="row">
+          <div class="col-md-12">
+            {!! Form::label("img","Images") !!}
+            {!! Form::file('img') !!}
+            <br>
+          </div>
+        </div>
    			<div class="row">
    				<div class="col-md-12">
    					 <div class="form-group">
@@ -73,9 +75,17 @@
        		</div>
    		</div>
    	</div>
-   	</form>
 
 </div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+        <label>Deskripsi</label>
+        <textarea class="form-control" rows="10" name="deskripsi"></textarea>
+    </div>
+  </div>
+</div>
+</form>
 
 
 @endsection

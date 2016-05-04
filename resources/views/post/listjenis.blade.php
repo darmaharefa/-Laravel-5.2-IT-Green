@@ -9,7 +9,7 @@
 	    <tr>
         	@foreach($data as $item)
     		<td widht="25%">
-        		<img src="{{ url("") }}" alt="Gambar Bunga" width="180" height="136" />
+        		<img src="{{ url("/img") }}/{{$item->img}}" alt="Gambar Bunga" width="180" height="136" />
         		<p text align="center"><a href="{{url("/jenis")}}/{{$item->jenis_id}}/{{$item->url}}">{{$item->judul}}</a>
       		</td>
         	@endforeach

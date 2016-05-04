@@ -21,3 +21,20 @@
 
 <!-- Custome Style CSS -->
 <link rel="stylesheet" href="<?php url("/") ?>/admin/css/style.css">
+
+<!-- TinyMCE -->
+<script src='{{url("/js/tinymce")}}/tinymce.min.js'></script>
+
+<script>
+	tinymce.init({
+	    selector: 'textarea',
+	    plugins: [
+	      'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+	      'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+	      'save table contextmenu directionality emoticons template paste textcolor'
+	    ],
+	    menubar : 'false',
+	    content_css: '{{url("/css")}}/content.css',
+	    toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | preview fullpage | forecolor'
+	  });
+</script>

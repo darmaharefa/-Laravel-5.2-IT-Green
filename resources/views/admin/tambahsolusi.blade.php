@@ -24,7 +24,7 @@
 
 <div class="row">
     <div class="col-md-8">
-        <form role="form" method="POST" action="{{ url(action("DashboardController@postSaveSolusi")) }}">
+        <form role="form" method="POST" enctype="multipart/form-data" action="{{ url(action("DashboardController@postSaveSolusi")) }}">
         {{ csrf_field() }}
             <div class="form-group">
                 <label>Judul</label>
@@ -40,17 +40,19 @@
 
             <div class="form-group">
                 <label>Deskripsi Singkat</label>
-                <textarea class="form-control" rows="4" name="shortdesk"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label>Deskripsi</label>
-                <textarea class="form-control" rows="6" name="deskripsi"></textarea>
+                <textarea class="form-control" rows="6" name="shortdesk"></textarea>
             </div>
     </div>
 
    	<div class="col-md-4">
    		<div class="well">
+        <div class="row">
+          <div class="col-md-12">
+            {!! Form::label("img","Images") !!}
+            {!! Form::file('img') !!}
+            <br>
+          </div>
+        </div>
    			<div class="row">
    				<div class="col-md-12">
    					 <div class="form-group">
@@ -72,9 +74,18 @@
        		</div>
    		</div>
    	</div>
-   	</form>
 
 </div>
 
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+        <label>Deskripsi</label>
+        <textarea class="form-control" rows="10" name="deskripsi"></textarea>
+    </div>
+  </div>
+</div>
+
+</form>
 
 @endsection

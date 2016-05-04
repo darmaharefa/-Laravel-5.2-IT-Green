@@ -27,11 +27,20 @@
 @section('konten')
 <div class="row">
     <div class="col-lg-12">
-        @if($solusi_id == 1)
-            <h5>Hama <span class="grey">({{count($data)}})</span></h5>
-        @elseif($solusi_id == 2)
-            <h5>Pertumbuhan <span class="grey">({{count($data)}})</span></h5>
-        @endif
+        <div class="row">
+            <div class="col-md-10">
+                @if($solusi_id == 1)
+                    <h5>Hama <span class="grey">({{count($data)}})</span></h5>
+                @elseif($solusi_id == 2)
+                    <h5>Pertumbuhan <span class="grey">({{count($data)}})</span></h5>
+                @endif
+            </div>
+            <div class="col-md-2">
+                <a class="btn btn-primary btn-sm btn-block" href="{{url("/dashboard/solusi/create")}}">
+                    <span class="fa fa-plus"></span> Tambah
+                </a>
+            </div>
+        </div>
         <div class="table-responsive">
             <table class="table table-bordered table-hover">
                 <thead>

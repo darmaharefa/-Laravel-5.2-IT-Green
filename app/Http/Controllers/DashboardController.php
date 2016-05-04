@@ -10,6 +10,9 @@ use App\Jenis;
 use App\Solusi;
 use App\Tips;
 use Session;
+use Storage;
+use File;
+
 
 class DashboardController extends Controller
 {
@@ -50,7 +53,8 @@ class DashboardController extends Controller
     		'nama'		=> 'required|max:100',
             'judul' 	=> 'required|max:255',
             'url'  		=> 'required|alpha_dash|min:5|max:200|unique:jenis,url',
-            'deskripsi' => 'required'
+            'deskripsi' => 'required',
+            'img'       => 'required'
         ));
 
         $jenis = new Jenis;
@@ -60,9 +64,18 @@ class DashboardController extends Controller
         $jenis->url 		= $request->url;
         $jenis->deskripsi  	= $request->deskripsi;
 
+        $img = Input::file('img');
+        if ($img !== null) {
+            $filename       = $img->getClientOriginalName();
+            // Storage::disk('uploads')->put('filename', $filename);
+            Storage::disk('uploads')->put($filename, file_get_contents($img -> getRealPath()));
+            
+            $jenis->img     = $filename;  
+        }
+
         $jenis->save();
 
-        Session::flash('sukses','Jenis Tanaman Berhasil di Tambah!');
+        Session::flash('success','Jenis Tanaman Berhasil di Tambah!');
 
 
         return redirect()->route('jenis.show', $jenis->jenis_id);
@@ -85,10 +98,11 @@ class DashboardController extends Controller
             ));
         } else{
             $this->validate($request, array(
-                    'nama'       => 'required|max:100',
+                    'nama'      => 'required|max:100',
                     'judul'     => 'required|max:255',
                     'url'       => 'required|alpha_dash|min:5|max:200|unique:jenis,url',
-                    'deskripsi' => 'required'
+                    'deskripsi' => 'required',
+                    'img'       => 'required'
             ));
         }
 
@@ -97,6 +111,15 @@ class DashboardController extends Controller
         $jenis->url         = $request->url;
         $jenis->deskripsi   = $request->deskripsi;
         
+        $img = Input::file('img');
+        if ($img !== null) {
+            $filename       = $img->getClientOriginalName();
+            // Storage::disk('uploads')->put('filename', $filename);
+            Storage::disk('uploads')->put($filename, file_get_contents($img -> getRealPath()));
+            
+            $jenis->img     = $filename;  
+        }
+
         $jenis->save();
 
         Session::flash('success','Jenis Tanaman Berhasil di Edit!');
@@ -140,9 +163,10 @@ class DashboardController extends Controller
         $this->validate($request, array(
             'solusi_id' => 'min:1|max:2',
             'judul'     => 'required|max:255',
-            'url'       => 'required|alpha_dash|min:5|max:200|unique:solusi,url',
+            'url'       => 'required|alpha_dash|min:5|max:200|unique:solusis,url',
             'shortdesk' => 'required|max:255',
-            'deskripsi' => 'required'
+            'deskripsi' => 'required',
+            'img'       => 'required'
         ));
 
         $solusi = new Solusi;
@@ -153,9 +177,15 @@ class DashboardController extends Controller
         $solusi->shortdesk   = $request->shortdesk;
         $solusi->deskripsi   = $request->deskripsi;
 
+        $img = Input::file('img');
+        if ($img !== null) {
+            $imgName        = $img->getClientOriginalName();
+            $solusi->img     = $imgName;  
+        }
+
         $solusi->save();
 
-        Session::flash('sukses','Solusi Berhasil di Tambah!');
+        Session::flash('success','Solusi Berhasil di Tambah!');
 
 
         return redirect()->route('solusi.show', $solusi->solusi_id);
@@ -179,9 +209,10 @@ class DashboardController extends Controller
         } else{
             $this->validate($request, array(
                     'judul'     => 'required|max:255',
-                    'url'       => 'required|alpha_dash|min:5|max:255|unique:tips,url',
+                    'url'       => 'required|alpha_dash|min:5|max:255|unique:solusis,url',
                     'shortdesk' => 'required',
-                    'deskripsi' => 'required'
+                    'deskripsi' => 'required',
+                    'img'     => 'required'
             ));
         }
 
@@ -189,6 +220,12 @@ class DashboardController extends Controller
         $solusi->url       = $request->url;
         $solusi->shortdesk = $request->shortdesk; 
         $solusi->deskripsi = $request->deskripsi; 
+
+        $img = Input::file('img');
+        if ($img !== null) {
+            $imgName        = $img->getClientOriginalName();
+            $solusi->img     = $imgName;  
+        }
 
         $solusi->save();
 
@@ -216,7 +253,7 @@ class DashboardController extends Controller
     // Route -> /dashboard/tips
     // Method untuk Menampilkan Tips di Dashboard
     public function getIndexTips(){
-        $data = Tips::all();
+        $data = Tips::orderBy("created_at","desc")->get();
         return view("admin.tabeltips")->with("data",$data);;
     }
 
@@ -232,7 +269,8 @@ class DashboardController extends Controller
         $this->validate($request, array(
                 'judul'     => 'required|max:255',
                 'url'       => 'required|alpha_dash|min:5|max:255|unique:tips,url',
-                'deskripsi' => 'required'
+                'deskripsi' => 'required',
+                'img'     => 'required'
         ));
 
         $tips = new Tips;
@@ -240,6 +278,12 @@ class DashboardController extends Controller
         $tips->judul     = $request->judul;
         $tips->url       = $request->url;
         $tips->deskripsi = $request->deskripsi; 
+
+        $img = Input::file('img');
+        if ($img !== null) {
+            $imgName        = $img->getClientOriginalName();
+            $tips->img     = $imgName;  
+        }
 
         $tips->save();
 
@@ -265,13 +309,20 @@ class DashboardController extends Controller
             $this->validate($request, array(
                     'judul'     => 'required|max:255',
                     'url'       => 'required|alpha_dash|min:5|max:255|unique:tips,url',
-                    'deskripsi' => 'required'
+                    'deskripsi' => 'required',
+                    'img'     => 'required'
             ));
         }
 
         $tips->judul     = $request->judul;
         $tips->url       = $request->url;
         $tips->deskripsi = $request->deskripsi; 
+
+        $img = Input::file('img');
+        if ($img !== null) {
+            $imgName        = $img->getClientOriginalName();
+            $tips->img     = $imgName;  
+        }
 
         $tips->save();
 

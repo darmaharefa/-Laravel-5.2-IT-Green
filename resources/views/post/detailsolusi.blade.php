@@ -9,7 +9,7 @@
         			<table width="101%" height="366" border="0" cellpadding="0" cellspacing="1">
           				<tr>
             				<td width="21%" height="114" align="center" text>
-            					<img src="" width="328" height="192" alt="{{$data->title}}"/>
+            					<img src="{{ url("/img") }}/{{$data->img}}" width="328" height="192" alt="{{$data->title}}"/>
             				</td>
             				<td width="79%" height="114" align="center" text>
             					<h6><strong>{{$data->judul}}</strong></h6>

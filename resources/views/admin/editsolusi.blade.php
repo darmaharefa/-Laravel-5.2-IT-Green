@@ -26,7 +26,7 @@
 
 <div class="row">
     <div class="col-md-8">
-      {!! Form::model($data, ["route"=>["solusi.update",$data->solusi_id,$data->id],"method"=>"PUT"]) !!}
+      {!! Form::model($data, ["route"=>["solusi.update",$data->solusi_id,$data->id],"method"=>"PUT","enctype"=>"multipart/form-data"]) !!}
         {{ csrf_field() }}
             {!! Form::label("judul", "Judul") !!}
             {!! Form::text("judul",null, ["class"=>"form-control"]) !!}
@@ -43,6 +43,18 @@
 
    	<div class="col-md-4">
    		<div class="well">
+        <div class="row">
+          <div class="col-md-12">
+            <label>Gambar</label>
+            <img src="{{url("/img")}}/{{$data->img}}" class="img-responsive" alt="{{$data->img}}">
+          </div>
+          <div class="col-md-12">
+            <br>
+            {!! Form::label("img","Ganti Gambar") !!}
+            {!! Form::file('img') !!}
+            <br>
+          </div>
+        </div>
         <div class="row">
           <div class="col-md-12">
             <dl>

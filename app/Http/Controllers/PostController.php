@@ -39,7 +39,7 @@ class PostController extends Controller
     }
 
     public function getTips(){
-        $tips = Tips::paginate(3);
+        $tips = Tips::orderBy("created_at","desc")->paginate(3);
         return view("post.listtips")->with("data",$tips);
     }
 
