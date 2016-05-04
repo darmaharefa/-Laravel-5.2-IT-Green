@@ -23,7 +23,7 @@
             @foreach($data as $item)
                 <li>
                     <a href="{{url("/solusi")}}/{{$item->solusi_id}}/{{$item->url}}"><strong>{{$item->judul}}</strong></a><br/>
-                    <p>{{$item->shortdesk}}</p>
+                    <p>{!!$item->shortdesk!!}</p>
                     <a href="{{url("/solusi")}}/{{$item->solusi_id}}/{{$item->url}}">penanganan...</a>
                 </li>
                 </br>

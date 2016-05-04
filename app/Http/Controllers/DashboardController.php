@@ -67,7 +67,6 @@ class DashboardController extends Controller
         $img = Input::file('img');
         if ($img !== null) {
             $filename       = $img->getClientOriginalName();
-            // Storage::disk('uploads')->put('filename', $filename);
             Storage::disk('uploads')->put($filename, file_get_contents($img -> getRealPath()));
             
             $jenis->img     = $filename;  
@@ -114,9 +113,7 @@ class DashboardController extends Controller
         $img = Input::file('img');
         if ($img !== null) {
             $filename       = $img->getClientOriginalName();
-            // Storage::disk('uploads')->put('filename', $filename);
             Storage::disk('uploads')->put($filename, file_get_contents($img -> getRealPath()));
-            
             $jenis->img     = $filename;  
         }
 
@@ -179,8 +176,10 @@ class DashboardController extends Controller
 
         $img = Input::file('img');
         if ($img !== null) {
-            $imgName        = $img->getClientOriginalName();
-            $solusi->img     = $imgName;  
+            $filename       = $img->getClientOriginalName();
+            Storage::disk('uploads')->put($filename, file_get_contents($img -> getRealPath()));
+            
+            $solusi->img     = $filename;  
         }
 
         $solusi->save();
@@ -223,8 +222,10 @@ class DashboardController extends Controller
 
         $img = Input::file('img');
         if ($img !== null) {
-            $imgName        = $img->getClientOriginalName();
-            $solusi->img     = $imgName;  
+            $filename       = $img->getClientOriginalName();
+            Storage::disk('uploads')->put($filename, file_get_contents($img -> getRealPath()));
+            
+            $solusi->img     = $filename;  
         }
 
         $solusi->save();
@@ -269,8 +270,7 @@ class DashboardController extends Controller
         $this->validate($request, array(
                 'judul'     => 'required|max:255',
                 'url'       => 'required|alpha_dash|min:5|max:255|unique:tips,url',
-                'deskripsi' => 'required',
-                'img'     => 'required'
+                'deskripsi' => 'required'
         ));
 
         $tips = new Tips;
@@ -278,12 +278,6 @@ class DashboardController extends Controller
         $tips->judul     = $request->judul;
         $tips->url       = $request->url;
         $tips->deskripsi = $request->deskripsi; 
-
-        $img = Input::file('img');
-        if ($img !== null) {
-            $imgName        = $img->getClientOriginalName();
-            $tips->img     = $imgName;  
-        }
 
         $tips->save();
 
@@ -309,20 +303,13 @@ class DashboardController extends Controller
             $this->validate($request, array(
                     'judul'     => 'required|max:255',
                     'url'       => 'required|alpha_dash|min:5|max:255|unique:tips,url',
-                    'deskripsi' => 'required',
-                    'img'     => 'required'
+                    'deskripsi' => 'required'
             ));
         }
 
         $tips->judul     = $request->judul;
         $tips->url       = $request->url;
         $tips->deskripsi = $request->deskripsi; 
-
-        $img = Input::file('img');
-        if ($img !== null) {
-            $imgName        = $img->getClientOriginalName();
-            $tips->img     = $imgName;  
-        }
 
         $tips->save();
 
