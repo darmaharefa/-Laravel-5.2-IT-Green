@@ -7,7 +7,9 @@
 		<div id="main">
 			
 			@include("parts._menu")	
-
+			
+			{{Auth::check() ? "Login" : "Logout"}}
+		
 			<!-- Pesan Selamat Datang -->
 			@yield('welcome')
 

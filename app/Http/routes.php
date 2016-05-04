@@ -28,6 +28,18 @@ Route::get("/tips", "PostController@getTips");
 Route::get("/tips/{slug}", "PostController@getDetailTips");
 
 
+//Route untuk Authentikasi
+//
+// Login Route
+Route::get("auth/login", "Auth\AuthController@getLogin");
+Route::post("auth/login", "Auth\AuthController@postLogin");
+Route::get("auth/logout", "Auth\AuthController@getLogout");
+
+//Register Route
+Route::get("auth/register", "Auth\AuthController@getRegister");
+Route::post("auth/register", "Auth\AuthController@postRegister");
+
+
 //Route Admin untuk Dasboard
 //Dashboard -> Jenis Tanaman, Tambah Jenis Tanaman
 //Dashboard -> Solusi Kerusakan, Tambah Solusi
