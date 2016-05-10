@@ -8,12 +8,12 @@
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
 
-Sebelum
-
 
 ### Installation ###
 
+Clone/Downlad Repositorinya
 * `git clone https://github.com/darmaharefa/-Laravel-5.2-IT-Green.git projectname` / Download Zip Filenya 
+
 Masuk ke directorinya 
 * `cd projectname`
 
@@ -33,3 +33,5 @@ Buka localhost/phpmyadmin, buat database baru dengan nama db_itgreen
 Import database db_itgreen.sql nya ke database tersebut
 
 * `php artisan serve` to start the app on http://localhost:8000/
+
+Buka browser dan ketikkan http://localhost:8000/
