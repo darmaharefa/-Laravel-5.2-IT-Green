@@ -59,7 +59,7 @@ class DashboardController extends Controller
             'judul' 	=> 'required|max:255',
             'url'  		=> 'required|alpha_dash|min:5|max:200|unique:jenis,url',
             'deskripsi' => 'required',
-            'img'       => 'required'
+            // 'img'       => 'required'
         ));
 
         $jenis = new Jenis;
@@ -106,7 +106,7 @@ class DashboardController extends Controller
                     'judul'     => 'required|max:255',
                     'url'       => 'required|alpha_dash|min:5|max:200|unique:jenis,url',
                     'deskripsi' => 'required',
-                    'img'       => 'required'
+                    // 'img'       => 'required'
             ));
         }
 
@@ -168,7 +168,7 @@ class DashboardController extends Controller
             'url'       => 'required|alpha_dash|min:5|max:200|unique:solusis,url',
             'shortdesk' => 'required|max:255',
             'deskripsi' => 'required',
-            'img'       => 'required'
+            // 'img'       => 'required'
         ));
 
         $solusi = new Solusi;
@@ -216,7 +216,7 @@ class DashboardController extends Controller
                     'url'       => 'required|alpha_dash|min:5|max:255|unique:solusis,url',
                     'shortdesk' => 'required',
                     'deskripsi' => 'required',
-                    'img'     => 'required'
+                    // 'img'     => 'required'
             ));
         }
 

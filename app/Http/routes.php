@@ -12,12 +12,7 @@
 */
 
 //Route untuk Page Static
-
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
-
-// Route::get('/', "PostController@getIndex");
+Route::get('/', "PostController@getIndex");
 Route::get('/about', "PagesController@getAbout");
 
 //Route User Biasa untuk Jenis Tanaman
